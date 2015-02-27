@@ -1,0 +1,675 @@
+{
+    "project": {},
+    "files": {
+        "odata-query-generator.js": {
+            "name": "odata-query-generator.js",
+            "modules": {
+                "OData": 1
+            },
+            "classes": {
+                "FilterOptions": 1,
+                "NullFilterOptions": 1,
+                "BooleanFilterOptions": 1,
+                "FloatingPointFilterOptions": 1,
+                "IntegerFilterOptions": 1,
+                "DateTimeFilterOptions": 1,
+                "GuidFilterOptions": 1,
+                "StringFilterOptions": 1,
+                "WhereFilterOptions": 1,
+                "QueryBuilder": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "OData": {
+            "name": "OData",
+            "submodules": {},
+            "classes": {
+                "FilterOptions": 1,
+                "NullFilterOptions": 1,
+                "BooleanFilterOptions": 1,
+                "FloatingPointFilterOptions": 1,
+                "IntegerFilterOptions": 1,
+                "DateTimeFilterOptions": 1,
+                "GuidFilterOptions": 1,
+                "StringFilterOptions": 1,
+                "WhereFilterOptions": 1,
+                "QueryBuilder": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "odata-query-generator.js",
+            "line": 530,
+            "description": "The OData module is designed to generate OData query strings for specific\nAPI endpoints. General usage is as follows.\n\n<pre>\nvar qb = new OData.QueryBuilder('/api/users');\nqb.addWhereFilter('id1', OData.STRING, 'fName', OData.EQUALS, 'Bartholomew');\nvar query = qb.generateQueryUrl(); // query would equal \"/api/users/?$filter=fName eq 'Bartholomew'\"\n</pre>\n\nThe OData object provides the following constants for use with `QueryBuilder.addWhereFilter()`.\n<br/>\nFilter types:\n- OData.NULL\n- OData.BOOLEAN\n- OData.DECIMAL\n- OData.SINGLE\n- OData.DOUBLE\n- OData.BYTE\n- OData.SBYTE\n- OData.INT16\n- OData.INT32\n- OData.INT64\n- OData.TIME\n- OData.DATE_TIME\n- OData.DATE_TIME_OFFSET\n- OData.GUID\n- OData.STRING\n\nQuery Operators:\n- OData.IS_TRUE\n- OData.IS_FALSE\n- OData.ROUND_EQUALS\n- OData.FLOOR_EQUALS\n- OData.CEILING_EQUALS\n- OData.EQUALS\n- OData.NOT_EQUALS\n- OData.GREATER_THAN\n- OData.GREATER_THAN_OR_EQUAL_TO\n- OData.LESS_THAN\n- OData.LESS_THAN_OR_EQUAL_TO\n- OData.BEFORE\n- OData.AFTER\n- OData.YEAR_EQUALS\n- OData.MONTH_NUMBER_EQUALS\n- OData.DAY_NUMBER_EQUALS\n- OData.HOUR_EQUALS\n- OData.MINUTE_EQUALS\n- OData.SECOND_EQUALS\n- OData.IN_SEMICOLON_SEPARATED\n- OData.CASE_INSENSITIVE_EQUALS\n- OData.CASE_INSENSITIVE_NOT_EQUALS\n- OData.STARTS_WITH\n- OData.DOES_NOT_START_WITH\n- OData.ENDS_WITH\n- OData.DOES_NOT_END_WITH\n- OData.CONTAINS\n- OData.HAS_LENGTH\n\nThe OData object provides the following constants for use with `QueryBuilder.setOrderBy()`.\n<br/>\nOrderBy Orders:\n- OData.NONE\n- OData.ASC\n- OData.DESC"
+        }
+    },
+    "classes": {
+        "FilterOptions": {
+            "name": "FilterOptions",
+            "shortname": "FilterOptions",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "OData",
+            "namespace": "",
+            "file": "odata-query-generator.js",
+            "line": 172,
+            "description": "Where clause filter options base class.",
+            "is_constructor": 1
+        },
+        "NullFilterOptions": {
+            "name": "NullFilterOptions",
+            "shortname": "NullFilterOptions",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "OData",
+            "namespace": "",
+            "file": "odata-query-generator.js",
+            "line": 245,
+            "description": "Null where clause filter class.",
+            "extends": "FilterOptions",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "The options object.",
+                    "type": "Object"
+                }
+            ]
+        },
+        "BooleanFilterOptions": {
+            "name": "BooleanFilterOptions",
+            "shortname": "BooleanFilterOptions",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "OData",
+            "namespace": "",
+            "file": "odata-query-generator.js",
+            "line": 267,
+            "description": "Boolean where clause filter class.",
+            "extends": "FilterOptions",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "The options object.",
+                    "type": "Object"
+                }
+            ]
+        },
+        "FloatingPointFilterOptions": {
+            "name": "FloatingPointFilterOptions",
+            "shortname": "FloatingPointFilterOptions",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "OData",
+            "namespace": "",
+            "file": "odata-query-generator.js",
+            "line": 293,
+            "description": "FloatingPoint where clause filter class.",
+            "extends": "FilterOptions",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "The options object.",
+                    "type": "Object"
+                }
+            ]
+        },
+        "IntegerFilterOptions": {
+            "name": "IntegerFilterOptions",
+            "shortname": "IntegerFilterOptions",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "OData",
+            "namespace": "",
+            "file": "odata-query-generator.js",
+            "line": 314,
+            "description": "Integer where clause filter class.",
+            "extends": "FilterOptions",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "The options object.",
+                    "type": "Object"
+                }
+            ]
+        },
+        "DateTimeFilterOptions": {
+            "name": "DateTimeFilterOptions",
+            "shortname": "DateTimeFilterOptions",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "OData",
+            "namespace": "",
+            "file": "odata-query-generator.js",
+            "line": 332,
+            "description": "Date and time where clause filter class.",
+            "extends": "FilterOptions",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "The options object.",
+                    "type": "Object"
+                }
+            ]
+        },
+        "GuidFilterOptions": {
+            "name": "GuidFilterOptions",
+            "shortname": "GuidFilterOptions",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "OData",
+            "namespace": "",
+            "file": "odata-query-generator.js",
+            "line": 409,
+            "description": "GUID where clause filter class.",
+            "extends": "FilterOptions",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "The options object.",
+                    "type": "Object"
+                }
+            ]
+        },
+        "StringFilterOptions": {
+            "name": "StringFilterOptions",
+            "shortname": "StringFilterOptions",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "OData",
+            "namespace": "",
+            "file": "odata-query-generator.js",
+            "line": 423,
+            "description": "String where clause filter class.",
+            "extends": "FilterOptions",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "The options object.",
+                    "type": "Object"
+                }
+            ]
+        },
+        "WhereFilterOptions": {
+            "name": "WhereFilterOptions",
+            "shortname": "WhereFilterOptions",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "OData",
+            "namespace": "",
+            "file": "odata-query-generator.js",
+            "line": 489,
+            "description": "Where clause filter class.",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "The options object.",
+                    "type": "Object"
+                }
+            ]
+        },
+        "QueryBuilder": {
+            "name": "QueryBuilder",
+            "shortname": "QueryBuilder",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "OData",
+            "namespace": "",
+            "file": "odata-query-generator.js",
+            "line": 530,
+            "description": "Query builder class.",
+            "params": [
+                {
+                    "name": "urlEndpoint",
+                    "description": "The URL of the service endpoint.",
+                    "type": "String"
+                },
+                {
+                    "name": "options",
+                    "description": "The options object.",
+                    "type": "Object"
+                }
+            ]
+        }
+    },
+    "classitems": [
+        {
+            "file": "odata-query-generator.js",
+            "line": 125,
+            "description": "Extend the built in String class with a format function.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "format",
+            "class": "FilterOptions",
+            "module": "OData"
+        },
+        {
+            "file": "odata-query-generator.js",
+            "line": 139,
+            "description": "Gives the child object a copy of the parent object's prototype.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_extend",
+            "params": [
+                {
+                    "name": "base",
+                    "description": "The base method whose prototype will be copied.",
+                    "type": "Function"
+                },
+                {
+                    "name": "child",
+                    "description": "The child method who will get a copy of the parent's prototype.",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "The augmented child method.",
+                "type": "Function"
+            },
+            "class": "FilterOptions",
+            "module": "OData"
+        },
+        {
+            "file": "odata-query-generator.js",
+            "line": 154,
+            "description": "Make sure there is a trailing /.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_cleanEndpointUrl",
+            "params": [
+                {
+                    "name": "url",
+                    "description": "The endpoint url.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "The cleaned endpoint url.",
+                "type": "String"
+            },
+            "class": "FilterOptions",
+            "module": "OData"
+        },
+        {
+            "file": "odata-query-generator.js",
+            "line": 184,
+            "description": "Where clause filter base class init method.",
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "Options to set on each where filter.",
+                    "type": "Object"
+                }
+            ],
+            "class": "FilterOptions",
+            "module": "OData"
+        },
+        {
+            "file": "odata-query-generator.js",
+            "line": 195,
+            "description": "Base query string for each type of filter.",
+            "itemtype": "method",
+            "name": "getWhereQuery",
+            "params": [
+                {
+                    "name": "propNames",
+                    "description": "The list of property names.",
+                    "type": "Array|String"
+                },
+                {
+                    "name": "operator",
+                    "description": "The comparator for this filter.",
+                    "type": "String"
+                },
+                {
+                    "name": "value",
+                    "description": "The value of the property.",
+                    "type": "Array|String"
+                }
+            ],
+            "return": {
+                "description": "The query string for the specified where filter.",
+                "type": "String"
+            },
+            "class": "FilterOptions",
+            "module": "OData"
+        },
+        {
+            "file": "odata-query-generator.js",
+            "line": 258,
+            "description": "Gets the where query, which for null is an empty string.",
+            "itemtype": "method",
+            "name": "getWhereQuery",
+            "return": {
+                "description": "An empty string.",
+                "type": "String"
+            },
+            "class": "NullFilterOptions",
+            "module": "OData"
+        },
+        {
+            "file": "odata-query-generator.js",
+            "line": 281,
+            "description": "Gets the where query for Boolean objects.",
+            "itemtype": "method",
+            "name": "getWhereQuery",
+            "params": [
+                {
+                    "name": "propNames",
+                    "description": "The list of property names.",
+                    "type": "Array|String"
+                },
+                {
+                    "name": "operator",
+                    "description": "The type of comparator to perform.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A Boolean query string.",
+                "type": "String"
+            },
+            "class": "BooleanFilterOptions",
+            "module": "OData"
+        },
+        {
+            "file": "odata-query-generator.js",
+            "line": 352,
+            "description": "Gets the where query for DateTime objects.",
+            "itemtype": "method",
+            "name": "getWhereQuery",
+            "params": [
+                {
+                    "name": "propNames",
+                    "description": "The list of property names.",
+                    "type": "Array|String"
+                },
+                {
+                    "name": "operator",
+                    "description": "The type of comparator to perform.",
+                    "type": "Array"
+                },
+                {
+                    "name": "values",
+                    "description": "The value of the property.",
+                    "type": "Array|String"
+                }
+            ],
+            "return": {
+                "description": "A DateTime query string.",
+                "type": "String"
+            },
+            "class": "DateTimeFilterOptions",
+            "module": "OData"
+        },
+        {
+            "file": "odata-query-generator.js",
+            "line": 446,
+            "description": "Gets the where query for String objects.",
+            "itemtype": "method",
+            "name": "getWhereQuery",
+            "params": [
+                {
+                    "name": "propNames",
+                    "description": "The list of property names.",
+                    "type": "Array|String"
+                },
+                {
+                    "name": "operator",
+                    "description": "The type of comparator to perform.",
+                    "type": "String"
+                },
+                {
+                    "name": "values",
+                    "description": "The value of the property.",
+                    "type": "Array|String"
+                }
+            ],
+            "return": {
+                "description": "A String query string.",
+                "type": "String"
+            },
+            "class": "StringFilterOptions",
+            "module": "OData"
+        },
+        {
+            "file": "odata-query-generator.js",
+            "line": 512,
+            "description": "Where clause filter class.",
+            "itemtype": "method",
+            "name": "getFilterHandler",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "Type of filter to retrieve.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A filter object.",
+                "type": "Object"
+            },
+            "class": "WhereFilterOptions",
+            "module": "OData"
+        },
+        {
+            "file": "odata-query-generator.js",
+            "line": 549,
+            "description": "Set the $top value in the final query. If you set val to null,\n$top will be removed from the final query string.",
+            "itemtype": "method",
+            "name": "setTop",
+            "params": [
+                {
+                    "name": "val",
+                    "description": "The top value.",
+                    "type": "Number"
+                }
+            ],
+            "class": "QueryBuilder",
+            "module": "OData"
+        },
+        {
+            "file": "odata-query-generator.js",
+            "line": 559,
+            "description": "Set the $skip value in the final query. If you set val to null,\n$skip will be removed from the final query string.",
+            "itemtype": "method",
+            "name": "setSkip",
+            "params": [
+                {
+                    "name": "val",
+                    "description": "The skip value.",
+                    "type": "Number"
+                }
+            ],
+            "class": "QueryBuilder",
+            "module": "OData"
+        },
+        {
+            "file": "odata-query-generator.js",
+            "line": 569,
+            "description": "Set the $orderby value in the final query. You need to pass the\nname of the property you want to sort by, and the order of the\nsort. Valid values are 0, 1, or 2 (NONE, ASC, and DESC respectively).\nIf you pass null, $orderby will be removed from the final query string.",
+            "itemtype": "method",
+            "name": "setOrderBy",
+            "params": [
+                {
+                    "name": "propName",
+                    "description": "The property to order by.",
+                    "type": "String"
+                },
+                {
+                    "name": "val",
+                    "description": "The sort order.",
+                    "type": "Number"
+                }
+            ],
+            "class": "QueryBuilder",
+            "module": "OData"
+        },
+        {
+            "file": "odata-query-generator.js",
+            "line": 590,
+            "description": "Return the base endpoint url.",
+            "itemtype": "method",
+            "name": "getBaseUrl",
+            "return": {
+                "description": "The base endpoint url.",
+                "type": "String"
+            },
+            "class": "QueryBuilder",
+            "module": "OData"
+        },
+        {
+            "file": "odata-query-generator.js",
+            "line": 599,
+            "description": "Return the final OData query URL.",
+            "itemtype": "method",
+            "name": "generateQueryUrl",
+            "return": {
+                "description": "A fully qualified query URL.",
+                "type": "String"
+            },
+            "class": "QueryBuilder",
+            "module": "OData"
+        },
+        {
+            "file": "odata-query-generator.js",
+            "line": 662,
+            "description": "Return the filter portion of the OData query URL.",
+            "itemtype": "method",
+            "name": "generateQueryFilterUrl",
+            "return": {
+                "description": "The filter URL.",
+                "type": "String"
+            },
+            "class": "QueryBuilder",
+            "module": "OData"
+        },
+        {
+            "file": "odata-query-generator.js",
+            "line": 680,
+            "description": "Clear the filter list for the OData final query url.",
+            "itemtype": "method",
+            "name": "removeAllWhereFilters",
+            "class": "QueryBuilder",
+            "module": "OData"
+        },
+        {
+            "file": "odata-query-generator.js",
+            "line": 688,
+            "description": "Add a filter to the list of filter that are used to build a query string.\nIf you call this method multiple times, each filter is AND'ed together.\nIf propNames or propValues is an array of values, the resulting query\nstring is OR'ed together for that specific filter.",
+            "itemtype": "method",
+            "name": "addWhereFilter",
+            "example": [
+                "\n   addWhereFilter(OData.STRING, 'FNAME', OData.EQUALS, 'bob')\n   addWhereFilter(OData.STRING, 'LNAME', OData.EQUALS, 'smith')\ngetODataQueryUrl() would return \"/api/user/?$filter=FNAME eq 'bob' and LNAME eq 'smith'\"",
+                "\n   addWhereFilter(OData.STRING, ['FNAME','LNAME'], OData.EQUALS, ['bob','smith'])\ngetODataQueryUrl() would return \"/api/user/?$filter=FNAME eq 'bob' or LNAME eq 'smith'\"",
+                "\n   addWhereFilter(OData.STRING, ['FNAME','LNAME'], OData.EQUALS, 'bob')\ngetODataQueryUrl() would return \"/api/user/?$filter=FNAME eq 'bob' or LNAME eq 'bob'\"",
+                "\n   addWhereFilter(OData.STRING, 'FNAME', OData.EQUALS, ['bob','sam'])\ngetODataQueryUrl() would return \"/api/user/?$filter=FNAME eq 'bob' or FNAME eq 'sam'\""
+            ],
+            "params": [
+                {
+                    "name": "id",
+                    "description": "Unique id for a filter.",
+                    "type": "String"
+                },
+                {
+                    "name": "filterType",
+                    "description": "The property filter name(STRING, TIME, DECIMAL, etc).",
+                    "type": "String"
+                },
+                {
+                    "name": "propNames",
+                    "description": "A list of property names.",
+                    "type": "Array|String"
+                },
+                {
+                    "name": "filterOperator",
+                    "description": "The type of filter(EQUALS, CONTAINS, etc).",
+                    "type": "String"
+                },
+                {
+                    "name": "propValues",
+                    "description": "The value for the filter.",
+                    "type": "Array|String"
+                }
+            ],
+            "class": "QueryBuilder",
+            "module": "OData"
+        },
+        {
+            "file": "odata-query-generator.js",
+            "line": 733,
+            "description": "Delete a specific filter in the filter list.",
+            "itemtype": "method",
+            "name": "removeWhereFilter",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "The id of the filter to remove.",
+                    "type": "String"
+                }
+            ],
+            "class": "QueryBuilder",
+            "module": "OData"
+        },
+        {
+            "file": "odata-query-generator.js",
+            "line": 748,
+            "description": "Return the where filters formatted for the final OData query url.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_getWhereQueryFilter",
+            "params": [
+                {
+                    "name": "whereFilters",
+                    "description": "A list of all the query filters.",
+                    "type": "Array"
+                }
+            ],
+            "return": {
+                "description": "The where filters formatted for the final OData query url.",
+                "type": "Array"
+            },
+            "class": "QueryBuilder",
+            "module": "OData"
+        }
+    ],
+    "warnings": []
+}
