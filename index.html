@@ -28,8 +28,8 @@
                     <h2 class="off-left">APIs</h2>
                     <div id="api-tabview" class="tabview">
                         <ul class="tabs">
-                            <li><a href="#api-classes">Classes</a></li>
                             <li><a href="#api-modules">Modules</a></li>
+                            <li><a href="#api-classes">Classes</a></li>
                         </ul>
 
                         <div id="api-tabview-filter">
@@ -37,6 +37,10 @@
                         </div>
 
                         <div id="api-tabview-panel">
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="./modules/OData.html">OData</a></li>
+                            </ul>
+
                             <ul id="api-classes" class="apis classes">
                                 <li><a href="./classes/BooleanFilterOptions.html">BooleanFilterOptions</a></li>
                                 <li><a href="./classes/DateTimeFilterOptions.html">DateTimeFilterOptions</a></li>
@@ -48,10 +52,6 @@
                                 <li><a href="./classes/QueryBuilder.html">QueryBuilder</a></li>
                                 <li><a href="./classes/StringFilterOptions.html">StringFilterOptions</a></li>
                                 <li><a href="./classes/WhereFilterOptions.html">WhereFilterOptions</a></li>
-                            </ul>
-
-                            <ul id="api-modules" class="apis modules">
-                                <li><a href="./modules/OData.html">OData</a></li>
                             </ul>
                         </div>
                     </div>
@@ -87,21 +87,18 @@
                     <div class="content">
     <div class="apidocs">
         <div id="docs-main" class="content">
-            <p>
-            Browse to a module or class using the sidebar to view its API documentation.
-            </p>
+            <h2>OData Query Generator</h2>
 
-            <h2>Keyboard Shortcuts</h2>
+            <p>The OData module is designed to generate OData query strings for specific API endpoints. General usage is as follows.</p>
+<!-- HTML generated using hilite.me -->
+<div style="background: #f0f3f3; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #006699; font-weight: bold">var</span> qb <span style="color: #555555">=</span> <span style="color: #006699; font-weight: bold">new</span> OData.QueryBuilder(<span style="color: #CC3300">&#39;/api/users&#39;</span>);
+qb.addWhereFilter(<span style="color: #CC3300">&#39;id1&#39;</span>, OData.STRING, <span style="color: #CC3300">&#39;fName&#39;</span>, OData.EQUALS, <span style="color: #CC3300">&#39;Bartholomew&#39;</span>);
 
-            <ul>
-                <li><p>Press <kbd>s</kbd> to focus the API search box.</p></li>
+<span style="color: #006699; font-weight: bold">var</span> query <span style="color: #555555">=</span> qb.generateQueryUrl();
+<span style="color: #0099FF; font-style: italic">// query would equal &quot;/api/users/?$filter=fName eq &#39;Bartholomew&#39;&quot;</span>
+</pre></div>
 
-                <li><p>Use <kbd>Up</kbd> and <kbd>Down</kbd> to select classes, modules, and search results.</p></li>
-
-                <li class="mac-only"><p>With the API search box or sidebar focused, use <kbd><span class="cmd">&#x2318;</span>-Left</kbd> or <kbd><span class="cmd">&#x2318;</span>-Right</kbd> to switch sidebar tabs.</p></li>
-
-                <li class="pc-only"><p>With the API search box or sidebar focused, use <kbd>Ctrl+Left</kbd> and <kbd>Ctrl+Right</kbd> to switch sidebar tabs.</p></li>
-            </ul>
+<!-- end code snippet -->
         </div>
     </div>
 
